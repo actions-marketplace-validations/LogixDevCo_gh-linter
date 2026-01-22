@@ -1,0 +1,26 @@
+name: 'LogixDev GitHub Actions Linter'
+description: 'Lint GitHub Actions workflow files using actionlint with detailed error reporting'
+author: 'TahaDekmak'
+branding:
+  icon: 'check-circle'
+  color: 'purple'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run actionlint
+      uses: reviewdog/action-actionlint@83e4ed25b168066ad8f62f5afbb29ebd8641d982
+      
+    - name: Create summary
+      shell: bash
+      run: |
+        echo "# ✅ GitHub Actions Workflow Lint" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Workflow files have been validated using actionlint." >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Checks performed:**" >> $GITHUB_STEP_SUMMARY
+        echo "- YAML syntax validation" >> $GITHUB_STEP_SUMMARY
+        echo "- Action version validation" >> $GITHUB_STEP_SUMMARY
+        echo "- Expression syntax checking" >> $GITHUB_STEP_SUMMARY
+        echo "- Shell script validation (ShellCheck)" >> $GITHUB_STEP_SUMMARY
+        echo "- Best practices enforcement" >> $GITHUB_STEP_SUMMARY
